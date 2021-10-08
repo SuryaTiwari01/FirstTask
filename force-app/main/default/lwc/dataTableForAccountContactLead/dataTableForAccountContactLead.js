@@ -31,21 +31,10 @@ export default class dataTableForAccountContactLead extends LightningElement {
     @track contactSelected;
     @track leadSelected;
     @track error;
-    //@track fieldLabelName="Select Object";
     @track accList;
     @track conList;
     @track ldList;
-            /*@wire(getAccountList)
-            wiredAccounts({
-                error,
-                data
-            }) {
-                if (data) {
-                    this.accList = data;
-                } else if (error) {
-                    this.error = error;
-                }
-            }*/
+
     selectionChangeHandler(event) {
         console.log('Check function Call');
 		var selectedObject = event.target.value;
