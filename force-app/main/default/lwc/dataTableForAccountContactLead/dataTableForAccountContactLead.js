@@ -1,43 +1,30 @@
 import { LightningElement ,api, wire, track} from 'lwc';
 import getAccountList from '@salesforce/apex/AccountHelper.getAccountList';
+import getContactList from '@salesforce/apex/AccountHelper.getContactList';
+import getLeadList from '@salesforce/apex/AccountHelper.getLeadList';
 export default class dataTableForAccountContactLead extends LightningElement {
-    @track columns = [{
-            label: 'Account name',
-            fieldName: 'Name',
-            type: 'text',
-            sortable: true
-        },
-        {
-            label: 'Type',
-            fieldName: 'Type',
-            type: 'text',
-            sortable: true
-        },
-        {
-            label: 'Annual Revenue',
-            fieldName: 'AnnualRevenue',
-            type: 'Currency',
-            sortable: true
-        },
-        {
-            label: 'Phone',
-            fieldName: 'Phone',
-            type: 'phone',
-            sortable: true
-        },
-        /*{
-            label: 'Website',
-            fieldName: 'Website',
-            type: 'url',
-            sortable: true
-        },*/
-        {
-            label: 'Rating',
-            fieldName: 'Rating',
-            type: 'test',
-            sortable: true
-        }
+    
+    @track columns = [
+        {label: 'Account name', fieldName: 'Name', type: 'text', sortable: true},
+        {label: 'Type', fieldName: 'Type', type: 'text', sortable: true},
+        {label: 'Annual Revenue', fieldName: 'AnnualRevenue', type: 'Currency', sortable: true},
+        {label: 'Phone', fieldName: 'Phone', type: 'phone', sortable: true},
     ];
+    
+    @track columns1 = [
+        {label: 'Contact Name', fieldName: 'Name', type: 'text', sortable: true},
+        {label: 'Title', fieldName: 'Title', type: 'text(128)', sortable: true},
+        {label: 'Email', fieldName: 'Email', type: 'Email', sortable: true},
+        {label: 'Phone', fieldName: 'Phone', type: 'phone', sortable: true}
+    ];
+    
+    @track columns2 = [
+        {label: 'Lead name', fieldName: 'Name', type: 'text', sortable: true},
+        {label: 'Company', fieldName: 'Company', type: 'Text(255)', sortable: true},
+        {label: 'Lead Status', fieldName: 'Status', type: 'Picklist', sortable: true},
+        {label: 'Phone', fieldName: 'Phone', type: 'phone', sortable: true},
+    ];
+
     //@track selectedObjectName;
     
     @track accountSelected;
@@ -46,6 +33,8 @@ export default class dataTableForAccountContactLead extends LightningElement {
     @track error;
     //@track fieldLabelName="Select Object";
     @track accList;
+    @track conList;
+    @track ldList;
             /*@wire(getAccountList)
             wiredAccounts({
                 error,
@@ -71,11 +60,30 @@ export default class dataTableForAccountContactLead extends LightningElement {
         
         }else if(selectedObject == 'Lead'){
             this.leadSelection(selectedObject);
+        } else {
+            this.accountSelected=false;
+            this.contactSelected=false;
+            this.leadSelected=false;
         }
-        
 	}
+    leadSelection(selectedObject){
+        this.leadSelected=true;
+        console.log('Lead--- selectedObject --- ', selectedObject );
+        this.accountSelected=false;
+        this.contactSelected=false;
+
+        console.log('Lead--- selectedObject --- ', selectedObject );
+        getLeadList()
+        .then(result =>{ this.ldList = result;
+        })
+        .catch(error =>{
+            this.error = error;
+        })
+    }
     accountSelection(selectedObject){
         this.accountSelected=true;
+        this.contactSelected=false;
+        this.leadSelected=false;
         console.log('Account--- selectedObject --- ', selectedObject );
         getAccountList()
         .then(result =>{
@@ -84,13 +92,20 @@ export default class dataTableForAccountContactLead extends LightningElement {
         .catch(error =>{
             this.error = error;
         })
+        
     }
     contactSelection(selectedObject){
         this.accountSelected=false;
+        this.contactSelected=true;
+        this.leadSelected=false;
+
         console.log('Contact--- selectedObject --- ', selectedObject );
-    }
-    leadSelection(selectedObject){
-        console.log('Lead--- selectedObject --- ', selectedObject );
+        getContactList()
+        .then(result =>{ this.conList = result;
+        })
+        .catch(error =>{
+            this.error = error;
+        })
     }
 
 }

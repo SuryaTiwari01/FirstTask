@@ -1,7 +1,8 @@
 <template>
     <lightning-card>
-        <div class="slds-form-element">
-            <label class="slds-form-element__label">
+        <div class="slds-border_top" style="height:10rem;width:20rem;padding:1rem">
+                <div class="slds-form-element">
+            <label class="slds-form-element__label" >
                 <span class="">Select Object</span>
             </label>
             <div class="slds-form-element__control">
@@ -19,11 +20,26 @@
                 </div>
             </div>
         </div>
-        <template if:true={accountSelected} >
+    </div>
+        
+        <template if:true={accountSelected}>
             <h2> Account Datatable</h2>
-            <lightning-datatable data={accList} columns={columns} key-field="Id">
-            </lightning-datatable>
+                <lightning-datatable data={accList} columns={columns} key-field="Id">
+                </lightning-datatable>
         </template>
+
+        <template if:true={contactSelected} >
+            <h2> Contact Datatable</h2>
+                <lightning-datatable data={conList} columns={columns1} key-field="Id">
+                </lightning-datatable>
+        </template>
+        
+        <template if:true={leadSelected} >
+            <h2> Lead Datatable</h2>
+                <lightning-datatable data={ldList} columns={columns2} key-field="Id">
+                </lightning-datatable>
+        </template>
+
         <template if:true={error}>
             {error}
         </template>

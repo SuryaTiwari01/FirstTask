@@ -5,4 +5,14 @@ public with sharing class AccountHelper {
                 Phone, Website, AnnualRevenue
             FROM Account];
     }
+    @AuraEnabled(cacheable=true)
+    public static List<Contact> getContactList() {
+        return [SELECT Id, Name, Phone, Title, Email
+            FROM Contact];
+    }
+    @AuraEnabled(cacheable=true)
+    public static List<Lead> getLeadList() {
+        return [SELECT Id, Name, Company, Status, Phone
+            FROM Lead];
+    }
 }
