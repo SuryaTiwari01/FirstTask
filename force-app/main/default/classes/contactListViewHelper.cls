@@ -1,28 +1,5 @@
-public with sharing class AccountHelper {
-
-    @AuraEnabled(cacheable=true)
-    public static List<Account> getAccountList() {
-        return [SELECT Id, Name, Type, Rating,
-                Phone, Website, AnnualRevenue
-            FROM Account];
-    }
-
-    @AuraEnabled(cacheable=true)
-    public static List<Contact> getContactList() {
-        return [SELECT Id, Name, Phone, Title, FirstName, LastName, AccountId, account.name, MailingStreet, 
-                        MailingCity, MailingState, MailingPostalCode, MailingCountry, Email  
-                FROM Contact
-                ];
-        /*return [SELECT Id, Name, Phone, Title, Email
-            FROM Contact];*/
-    }
- 
-    @AuraEnabled(cacheable=true)
-    public static List<Lead> getLeadList() {
-        return [SELECT Id, Name, Company, Status, Phone
-            FROM Lead];
-    }
-
+public with sharing class contactListViewHelper {
+    
     @AuraEnabled(cacheable=true)
     public static List<Contact> getContacts(){
         return [SELECT Id, FirstName, LastName, AccountId, account.name, MailingStreet, 
@@ -48,5 +25,4 @@ public with sharing class AccountHelper {
         }
 
     }
-
 }

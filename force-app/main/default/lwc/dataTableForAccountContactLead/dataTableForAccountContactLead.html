@@ -1,47 +1,81 @@
 <template>
-    <lightning-card>
-        <div class="slds-border_top" style="height:10rem;width:20rem;padding:1rem">
-                <div class="slds-form-element">
-            <label class="slds-form-element__label" >
-                <span class="">Select Object</span>
-            </label>
-            <div class="slds-form-element__control">
-                <div class="slds-select_container">
-                    
-                    <select class="slds-select" 
-                            onchange={selectionChangeHandler}>
-                            
-                        <option value="Select"> Select </option>
-                        <option class="uiInputSelectOption" value="Account">Account</option>
-                        <option class="uiInputSelectOption" value="Contact">Contact</option>
-                        <option class="uiInputSelectOption" value="Lead">Lead</option>
-                    </select>
-
-                </div>
-            </div>
+    <lightning-card title = "Data-Table">
+        <div slot="actions">
+            <lightning-button label="Create Contact" onclick={navigateToNewRecordPage}></lightning-button>
+            <lightning-button label="Delete Selected Contacts" onclick={deleteSelectedContacts}></lightning-button>
+            <lightning-input type="search" onchange={handleSearch}></lightning-input>
         </div>
-    </div>
+        <div class="slds-border_top" style = "height:10rem; width:20rem; padding:1rem">
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label" >
+                        <span class="">Select Object</span>
+                    </label>
+                    <div class="slds-form-element__control">
+                        <div class="slds-select_container">
+                        
+                            <select class="slds-select" 
+                                    onchange={selectionChangeHandler}>
+                                    
+                                <option value="Select"> --Select-- </option>
+                                <option class="uiInputSelectOption" value="Account">Account</option>
+                                <option class="uiInputSelectOption" value="Contact">Contact</option>
+                                <option class="uiInputSelectOption" value="Lead">Lead</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+        </div>
         
+        <template if:true={contactSelected} >
+            <h2> Contact Datatable</h2>
+                
+        <lightning-datatable
+        key-field = "id"
+        data = {dataList}
+        columns = {cols}
+        onrowselection = {handleRowSelection}
+        onrowaction = {handleRowAction}>
+        </lightning-datatable>
+
+        </template>
+
+
+        <!--
         <template if:true={accountSelected}>
             <h2> Account Datatable</h2>
-                <lightning-datatable data={accList} columns={columns} key-field="Id">
-                </lightning-datatable>
+                
         </template>
 
         <template if:true={contactSelected} >
             <h2> Contact Datatable</h2>
-                <lightning-datatable data={conList} columns={columns1} key-field="Id">
-                </lightning-datatable>
+                
+        <lightning-datatable
+        key-field = "id"
+        data = {dataList}
+        columns = {cols}
+        onrowselection = {handleRowSelection}
+        onrowaction = {handleRowAction}>
+        </lightning-datatable>
+
         </template>
         
         <template if:true={leadSelected} >
             <h2> Lead Datatable</h2>
-                <lightning-datatable data={ldList} columns={columns2} key-field="Id">
-                </lightning-datatable>
-        </template>
+
+        </template> 
 
         <template if:true={error}>
             {error}
         </template>
+    
+        <lightning-datatable
+        key-field = "id"
+        data = {dataList}
+        columns = {cols}
+        onrowselection = {handleRowSelection}
+        onrowaction = {handleRowAction}>
+        </lightning-datatable>
+    -->
     </lightning-card>
 </template>
