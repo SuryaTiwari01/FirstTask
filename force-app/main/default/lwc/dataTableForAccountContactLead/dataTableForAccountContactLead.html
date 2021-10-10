@@ -1,9 +1,34 @@
 <template>
     <lightning-card>
-        <div class="slds-border_top" style="height:10rem;width:20rem;padding:1rem">
-                <div class="slds-form-element">
+        <div class="slds-page-header">
+            <div class="slds-page-header__row">
+              <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                  <div class="slds-media__body">
+                    <div class="slds-page-header__name">
+                      <div class="slds-page-header__name-title">
+                        <h1>
+                          <span class="slds-page-header__title slds-truncate">Data-Table</span>
+                        </h1>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+      
+    <template if:true={selectedObject}>
+        <div slot="actions">
+            <lightning-button label = "Create New" onclick={navigateToNewRecordPage}></lightning-button>
+        </div>
+    </template>
+
+    
+    <div class="slds-border_top" style="width:20rem;padding:1rem">
+        <div class="slds-form-element">
             <label class="slds-form-element__label" >
-                <span class="">Select Object</span>
+                <span class="slds-page-header__title slds-truncate">Select Object</span>
             </label>
             <div class="slds-form-element__control">
                 <div class="slds-select_container">
@@ -11,10 +36,11 @@
                     <select class="slds-select" 
                             onchange={selectionChangeHandler}>
                             
-                        <option value="Select"> Select </option>
+                        <option> Select </option>
                         <option class="uiInputSelectOption" value="Account">Account</option>
                         <option class="uiInputSelectOption" value="Contact">Contact</option>
                         <option class="uiInputSelectOption" value="Lead">Lead</option>
+                    
                     </select>
 
                 </div>
@@ -22,21 +48,12 @@
         </div>
     </div>
         
-        <template if:true={accountSelected}>
-            <h2> Account Datatable</h2>
-                <lightning-datatable data={accList} columns={columns} key-field="Id">
-                </lightning-datatable>
-        </template>
-
-        <template if:true={contactSelected} >
-            <h2> Contact Datatable</h2>
-                <lightning-datatable data={conList} columns={columns1} key-field="Id">
-                </lightning-datatable>
-        </template>
-        
-        <template if:true={leadSelected} >
-            <h2> Lead Datatable</h2>
-                <lightning-datatable data={ldList} columns={columns2} key-field="Id">
+        <template if:true={dataList}>
+            <h2> {selectedObject} Datatable</h2>
+                <lightning-datatable 
+                data = {dataList} 
+                columns= {columns} 
+                key-field = "Id">
                 </lightning-datatable>
         </template>
 
