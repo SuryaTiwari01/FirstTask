@@ -2,9 +2,6 @@ import { LightningElement, api} from 'lwc';
 import getDataList from '@salesforce/apex/AccountHelper.getDataList';
 import { NavigationMixin } from 'lightning/navigation';
 
-const ACTIONS = [{label:'Delete', name:'delete'}]
-
-
 export default class dataTableForAccountContactLead extends NavigationMixin(LightningElement) {
     
     selectedObject;    
@@ -46,7 +43,5 @@ export default class dataTableForAccountContactLead extends NavigationMixin(Ligh
                 actionName: 'new'
             }
         })
-    } 
-
-
+    }
 }

@@ -21,6 +21,7 @@ public with sharing class AccountHelper {
                 dl.name = c.Name;
                 dl.phone = c.Phone;
                 dataList.add(dl);
+                
             }
 
         }else if(selectedObject =='Lead') {
@@ -38,9 +39,10 @@ public with sharing class AccountHelper {
     }
     
     class DataListWrapper{
+
         @AuraEnabled public String name{get;set;}
         @AuraEnabled public String phone{get;set;}
-        @AuraEnabled public String dataId{get;set;}
-        
+        @AuraEnabled public String dataId{get;set;}        
+
     }
 }
