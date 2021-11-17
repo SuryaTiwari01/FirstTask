@@ -1,0 +1,81 @@
+<!--
+    <template>
+    <lightning-card title="Get Parent fields using uiRecordApi Demo">
+        <div class="slds-var-p-around_medium">
+            <h1 class="slds-text-body_regular"><b>Contact Name:</b> {contactName}</h1>
+            <h1 class="slds-text-body_regular"><b>Parent Account Name:</b> {parentAccountName}</h1>
+            <h1 class="slds-text-body_regular"><b>contact Language: </b> {contactLanguage}</h1>
+            <h1 class="slds-text-body_regular"><b>Grand Parent Account Name:</b> {grandParentAccountName}</h1>
+        </div>
+    </lightning-card>
+</template>
+-->
+
+
+
+<template>
+    <lightning-card title="Identity">
+
+        <div class="slds-var-p-horizontal_small">
+            <lightning-record-view-form
+                record-id = {recordId}
+                density = "compact"
+                object-api-name = Contact>
+            
+                <div class="sldx-m-small">
+                    <h1>Personal Identifiable Information</h1>
+                        <lightning-output-field field-name="FirstName"></lightning-output-field>
+                        <lightning-output-field field-name="Birthdate"></lightning-output-field>
+                        <lightning-output-field field-name="MailingAdress"></lightning-output-field>
+                </div>
+                <div>        
+                    <h1>Individual Account</h1>
+                        <lightning-output-field field-name="Name"></lightning-output-field>
+                        <lightning-output-field field-name="AccountId"></lightning-output-field>
+                    
+                    <h1>Entity Account</h1>
+                        <lightning-output-field field-name="Phone"></lightning-output-field>
+                        <lightning-output-field field-name="AccountId"></lightning-output-field>
+                        
+                        <lightning-output-field field-name="Email"></lightning-output-field>
+                        <lightning-output-field field-name="AccountId"></lightning-output-field>
+                        
+                </div>
+
+            </lightning-record-view-form>
+        </div>
+
+    </lightning-card>
+</template>
+
+<!--
+        <hr/>
+                <div class="slds-card__body_inner">
+                <h1>Personal Identifiable Information</h1>
+                <span>Social Security Number : "1234567890"</span></br>
+                <span>Date of Birth : "03/01/1994"</span></br>
+                <span>Home Address : "mailingAddress"</span></br>
+            </div></hr>
+
+            <div class="slds-card__body_inner">
+                <h1>Individual Account</h1>
+                <div class="slds-card__body_inner">
+                    <span>Name          "FullName"</span></br>
+                    <span>Account Number         "accNumber"</span></br>
+                </div>
+
+                <h1>Entity Account</h1>
+                <div class="slds-card__body_inner">
+                    <a>"T6 Insvestments LLC</a></br>
+                
+                    <span>EIN "XXXXXX890"</span></br>
+                    <span>Account Number  "987654321"</span></br>
+                </div></hr>
+                <div class="slds-card__body_inner">
+                    <a>"T6 Insvestments LLC</a></br>
+                
+                    <span>EIN "XXXXXXX98"</span></br>
+                    <span>Account Number  "987654321"</span></br>
+                </div></hr>
+            </div>
+-->

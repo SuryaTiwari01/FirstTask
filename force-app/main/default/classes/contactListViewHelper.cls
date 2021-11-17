@@ -25,4 +25,12 @@ public with sharing class contactListViewHelper {
         }
 
     }
+
+    @AuraEnabled
+    public static List<Contact> getContactData(String recordId){
+            system.debug('recordId ---- '+recordId);
+            return [SELECT Id, FirstName, LastName, Birthdate, MailingAddress, Account.Name, Account.AccountNumber  FROM Contact WHERE Id =: recordId];
+        
+
+    }
 }
