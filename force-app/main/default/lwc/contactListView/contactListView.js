@@ -8,7 +8,7 @@ import { refreshApex } from '@salesforce/apex';
 
 const ACTIONS = [{label:'Delete', name:'delete'}]
 
-const COLS = [{label: 'Name', fieldName: 'link', type: 'url', typeAttributes:{label: {fieldName:'FullName'}}},
+const COLS = [{label: 'Name', fieldName: 'link', type: 'url', sortable: 'true', typeAttributes:{label: {fieldName:'FullName'}}},
              {label:'Email', fieldName:'Email'},
              {label:'Account', fieldName: 'accountLink', type:'url', typeAttributes:{label:{fieldName:'AccountName'}}},
              {label:'Mailing Address', fieldName:'MailingAddress'},
