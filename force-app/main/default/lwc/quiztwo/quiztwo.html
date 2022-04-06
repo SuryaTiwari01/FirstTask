@@ -1,0 +1,88 @@
+<template>
+    <template if:true={isDefaultPage}>
+        <lightning-card title="Welcome To OnLine Quiz" icon-name="action:new_campaign">
+        </lightning-card>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col">
+                <div>
+                    <div class="slds-border_top slds-border_bottom slds-border_left slds-border_right">
+                        <div class="slds-box slds-theme_shade slds-theme_shade">
+
+                            <div class="slds-form-element" style="padding-left:30px;padding-right:30px;">
+                                <div class="slds-form-element__control">
+                                    <div>
+                                        <lightning-combobox required
+                                                            name="SubjectComboBox"
+                                                            label="Choose One Subject"
+                                                            value={selectedQuiz}
+                                                            placeholder="Select Subject"
+                                                            options={quizNameList}
+                                                            onchange={handleChange}>
+                                        </lightning-combobox>
+                                        <br/>
+                                        <lightning-button   variant="brand"
+                                                            label="Proceed" 
+                                                            onclick={proceedMethod}>            
+                                        </lightning-button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template if:true={isQuestions}>
+        <lightning-card title="Questions" icon-name="action:new">
+            <h3 class="slds-section-title--divider" style="margin-right:30px; margin-left:15px; background: rgb(0, 57, 107); color: rgb(236, 233, 233);">
+                Multiple choice questions:
+            </h3>
+            <!-- <div class="slds-grid slds-wrap_xx-large"> -->
+                <div class="slds-col">
+                    <!-- <div class="slds-p-around_large slds-m-horizontal_large" style="width:80%; margin: auto;"> -->
+                        <div class="slds-border_top slds-border_bottom slds-border_left slds-border_right slds-box  slds-theme_alert-texture">
+                            <div class="slds-form-element" style="padding-left:30px;padding-right:30px;">
+                                <div class="slds-form-element__control">
+                                    <div class="slds-box slds-theme_shade slds-theme_shade">
+                                        <lightning-radio-group required  
+                                                                name="radioGroup"
+                                                                label={currentQuestion.questionsName}
+                                                                options={currentQuestion.optionsList}
+                                                                value={currentQuestion.selectedAnswer}
+                                                                onchange={handleChange}
+                                                                type="radio">
+                                        </lightning-radio-group>
+                                    </div>
+                                    </br>
+                                    <div>
+
+                                        <lightning-button-group>
+                                            <lightning-button
+                                                class="slds-m-top_small"
+                                                variant="neutral"
+                                                label="Previous" onclick={previous} disabled={firstpage}>
+                                            </lightning-button>
+                                            <lightning-button
+                                                class="slds-m-top_small"
+                                                variant="brand"
+                                                label="Next" onclick={next} disabled={lastPage}>
+                                            </lightning-button>
+                                            <lightning-button
+                                                class="slds-m-top_small"
+                                                variant="brand"
+                                                label="Submit" onclick={submitMethod} disabled={viewSubmitButton}>
+                                            </lightning-button>
+                                        </lightning-button-group>
+
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                <!-- </div>
+            </div> -->
+        </lightning-card>
+    </template>
+</template>
